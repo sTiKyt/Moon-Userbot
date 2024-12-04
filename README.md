@@ -14,7 +14,7 @@
 [![License](https://img.shields.io/badge/License-GPL-pink)](https://github.com/The-MoonTg-project/Moon-Userbot/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
 
-</p>
+
 
 ***A Simple, Fast, Customizable, Ai powered Userbot for Telegram made after Dragon-Userbot abandoned***
 
@@ -79,6 +79,8 @@
  
 - **YT Video [How to deploy on Koyeb]**: <https://youtu.be/2m_yB7EllYc>
 
+**For Detailed Guide refer to [wiki](https://github.com/The-MoonTg-project/Moon-Userbot/wiki/Installation#koyeb-free)**
+
 ## 🐳 Docker
 
 You can either use `docker run` or `docker compose`.
@@ -90,14 +92,20 @@ You can either use `docker run` or `docker compose`.
 - Put your environment vars in `.env` file check [.env.dist](/.env.dist) for example format
 
 ### 👷‍♂️`docker run`:
+We also push images to [Docker Hub](https://hub.docker.com/), so you can use the following commands to start and update the service:
 
   - Start:
+    1. If you want to use normal image:
     ```shell
     docker run --env-file ./.env -d qbtaumai/moonuserbot:latest
     ```
+    2. If you want to use image with flask web (only recommended for heroku/koyeb/render etc.):
+    ```shell
+    docker run --env-file ./.env -d qbtaumai/moonubcloud:latest-cloud
+    ```
   - Updating:
     ```shell
-    docker stop $(docker ps -q) && docker rm $(docker ps -a -q)
+    docker stop $(docker ps -q)
     ```
     then re-run the start command
 
@@ -129,22 +137,10 @@ If you're using Docker Compose version 2.x, use the following commands to start 
 > Make Sure you add appropriate env vars
 
 ## 🖥️ Local Host
-## Linux, Windows [only wsl]
-
-### Update the packages
-
-```shell
-sudo apt update && sudo apt upgrade -y
-```
+## 🐧 Linux (WSL compatible)
 
 ### Install Git
-
-> [!TIP]
-> Ignore if already installed
-
-```shell
-sudo apt install git
-```
+There are instructions for installing on several different Unix distributions on the Git website, at https://git-scm.com/download/linux
 
 ### Clone the repo
 
@@ -152,15 +148,25 @@ sudo apt install git
 git clone https://github.com/The-MoonTg-project/Moon-Userbot.git
 ```
 
-### Setup
+### Installation
 
 ```shell
-cd Moon-Userbot/ && sudo bash install.sh
+cd Moon-Userbot 
+chmod +x install.sh
+./install.sh
 ```
+
+**Installer tested on:**
+- Arch
+- Debian
+- Ubuntu
+- WSL (APT based distros)
+
+Feel free to test on other distros and let us know!
 
 #### 📱 Termux 
 > [!TIP]
-> use [GitHub](https://github.com/termux/termux-app/releases) version
+> Use [GitHub](https://github.com/termux/termux-app/releases) version
 -------------------------------------------------------------------------------
 
 > **Full Installation instruction [Given here](https://telegra.ph/Moon-Userbot-Installation---Termux-02-09)**
@@ -198,15 +204,15 @@ Contributions of any type are welcome like `custom_modules` etc. Feel free to do
 ## Licence
 
 ```plaintext
-                    GNU GENERAL PUBLIC LICENSE
-                        Version 3, 29 June 2007
+                    GNU GENERAL PUBLIC LICENSE
+                        Version 3, 29 June 2007
 
-  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
-  Everyone is permitted to copy and distribute verbatim copies
-  of this license document, but changing it is not allowed.
+  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+  Everyone is permitted to copy and distribute verbatim copies
+  of this license document, but changing it is not allowed.
 
-                             Preamble
+                             Preamble
 
-   The GNU General Public License is a free, copyleft license for
- software and other kinds of works.
+   The GNU General Public License is a free, copyleft license for
+ software and other kinds of works.
 ```

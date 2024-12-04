@@ -24,13 +24,11 @@ import subprocess
 import sys
 import time
 import traceback
-from PIL import Image, ImageEnhance
+from PIL import Image
 from io import BytesIO
-import aiohttp
 from types import ModuleType
 from typing import Dict, Tuple
 
-from PIL import Image
 import psutil
 from pyrogram import Client, errors, enums
 from pyrogram.errors import FloodWait, MessageNotModified, UserNotParticipant
@@ -214,25 +212,6 @@ async def edit_or_reply(message, txt):
 def text(message: Message) -> str:
     """Find text in `Message` object"""
     return message.text if message.text else message.caption
-
-
-async def make_carbon(code):
-    url = "https://carbonara.solopov.dev/api/cook"
-
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, json={"code": code}) as resp:
-            image_data = await resp.read()
-
-    carbon_image = Image.open(BytesIO(image_data))
-
-    enhancer = ImageEnhance.Brightness(carbon_image)
-    bright_image = enhancer.enhance(1.0)
-
-    output_image = BytesIO()
-    bright_image.save(output_image, format="PNG", quality=95)
-    output_image.name = "carbon.png"
-
-    return output_image
 
 
 def restart() -> None:
